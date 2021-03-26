@@ -1,0 +1,12 @@
+Honor Code: We pledge that this program represents my own program code and that
+We have coded on my own. We received help from no one in designing and debugging
+my program. We have also read the plagiarism section in the course info sheet
+of CSC B20 and understand the consequences.
+
+Team Member - First Name : Shawn
+Team Member - Last Name  : Santhoshgeorge
+Team Member - Student ID : 1006094673
+
+Team Member - First Name : Harrison
+Team Member - Last Name  : Iruthayathas
+Team Member - Student ID : 1006215640
