@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labs</title>
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/index.css') }}"
+  />
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/labs.css') }}"
+  />
+</head>
+
+<body>
+  {% extends "template.html" %} 
+  {% block content %}
+
+  <div class="wrapper">
+    <h1>Labs</h1>
+    <div id="resp-table">
+      <div id="resp-table-header">
+        <div class="table-header-cell">
+          <b>Lab Handouts</b>
+        </div>
+      </div>
+    </div>
+    <div id="resp-table">
+      <div id="resp-table-header">
+        <div class="table-header-cell">
+          Week
+        </div>
+        <div class="table-header-cell">
+          Topic
+        </div>
+        <div class="table-header-cell">
+          Handout
+        </div>
+        <div class="table-header-cell">
+          Solutions
+        </div>
+      </div>
+      <div id="resp-table-body">
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>1</b>
+          </div>
+          <div class="table-body-cell">
+            <b>No Tutorial</b>
+          </div>
+          <div class="table-body-cell">
+            <b>None</b>
+          </div>
+          <div class="table-body-cell">
+            <b>None</b>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>2</b>
+          </div>
+          <div class="table-body-cell">
+            <b>Worst Case Complexity</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-W2</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-W2</b></a>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>3</b>
+          </div>
+          <div class="table-body-cell">
+            <b>AVL Trees Insert/Delete</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-W3</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-W3</b></a>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>4</b>
+          </div>
+          <div class="table-body-cell">
+            <b>Practice Term test format</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-W4</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-W4</b></a>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>5</b>
+          </div>
+          <div class="table-body-cell">
+            <b>Graph Search Algorithms</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-W5</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-W5</b></a>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>6</b>
+          </div>
+          <div class="table-body-cell">
+            <b>MSTs and Prims Algorithm</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-W6</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-W6</b></a>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>7</b>
+          </div>
+          <div class="table-body-cell">
+            <b>Dijkstra</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-W7</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-W7</b></a>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>8</b>
+          </div>
+          <div class="table-body-cell">
+            <b>Amortized Analysis - Binary Counter</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-W8</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-W8</b></a>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>9</b>
+          </div>
+          <div class="table-body-cell">
+            <b>Disjoint Sets</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-W9</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-W9</b></a>
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>10-12</b>
+          </div>
+          <div class="table-body-cell">
+            <b>Fibonacci Complexity, Case Analysis, & Direct Addressing</b>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Handout-FINAL</b></a>
+          </div>
+          <div class="table-body-cell">
+            <a href="./files/dummy_doc.pdf"><b>Soln-FINAL</b></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+</body>
+
+</html>
