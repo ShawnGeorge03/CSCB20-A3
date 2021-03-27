@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0px;
+  font-family: "segoe ui";
+  background-color: #333;
+}
+
+a {
+  color: #eee;
+}
+
+a:hover {
+  color: cornflowerblue;
+  font-weight: bold;
+}
+
+.links {
+  font-size: 25px;
+}
+
+.nav {
+  height: 50px;
+  width: auto;
+  background-color: #259c96;
+  position: relative;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: auto;
+  height: auto;
+  text-align: center;
+  justify-content: center;
+}
+
+.wrapper h1 {
+  text-transform: uppercase;
+  font-size: 50px;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.wrapper p {
+  font-size: 25px;
+  color: white;
+}
+
+.footer {
+  background-color: #000000cc;
+  color: white;
+  width: auto;
+  height: 150px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.footer footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer footer a,
+.footer footer p {
+  padding-top: 1px;
+  text-align: center;
+}
+
+@media (max-width: 1080px) {
+  .wrapper {
+    width: 400px;
+    overflow: hidden;
+  }
+
+  .nav > .nav-btn {
+    display: inline;
+    left: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: auto;
+    overflow-y: auto;
+  }
+}
