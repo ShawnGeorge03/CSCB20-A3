@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Links</title>
+{% extends "template.html" %} 
+  {% block title %}Links{% endblock %}
+  {% block head %}
+    {{ super() }}
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/links.css') }}"
     />
-  </head>
-
-  <body>
-    {% extends "template.html" %} {% block content %}
-
+  {% endblock %}
+  {% block content %}
     <div class="wrapper">
       <h1>Links</h1>
       <p>
@@ -31,7 +25,5 @@
         and add as you need.
       </p>
     </div>
+  {% endblock %}
 
-    {% endblock %}
-  </body>
-</html>

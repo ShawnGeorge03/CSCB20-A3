@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calendar</title>
-
+{% extends "template.html" %} 
+  {% block title %}Calendar{% endblock %}
+  {% block head %}
+    {{ super() }}
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/calendar.css') }}"
     />
-  </head>
-
-  <body>
-    {% extends "template.html" %} 
-    {% block content %}
-
+  {% endblock %}
+  {% block content %}
     <div class="wrapper">
       <h1>Calendar</h1>
       <p>
@@ -29,7 +21,6 @@
         >
       </p>
     </div>
-
     <div class="calendar">
       <iframe
         src="https://calendar.google.com/calendar/embed?src=pc4ish4k5qgo9gj2jktevn4eio%40group.calendar.google.com&ctz=America%2FToronto"
@@ -42,5 +33,3 @@
       </iframe>
     </div>
     {% endblock %}
-  </body>
-</html>

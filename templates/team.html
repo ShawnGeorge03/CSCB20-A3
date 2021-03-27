@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=\, initial-scale=1.0" />
-    <title>Meet the Team</title>
+{% extends "template.html" %} 
+  {% block title %}Meet the Team{% endblock %}
+  {% block head %}
+    {{ super() }}
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/team.css') }}"
     />
-  </head>
-
-  <body>
-    {% extends "template.html" %} {% block content %}
-
+  {% endblock %}
+  {% block content %}
     <div class="wrapper">
       <h1>Our Team</h1>
       <div class="team">
@@ -116,7 +110,5 @@
         </div>
       </div>
     </div>
+  {% endblock %}
 
-    {% endblock %}
-  </body>
-</html>

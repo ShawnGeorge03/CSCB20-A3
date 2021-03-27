@@ -1,288 +1,280 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lectures</title>
+{% extends "template.html" %} 
+  {% block title %}Lectures{% endblock %}
+  {% block head %}
+    {{ super() }}
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/lectures.css') }}"
     />
-  </head>
-
-  <body>
-    {% extends "template.html" %} 
-    {% block content %}
+  {% endblock %}
+  {% block content %}
     <div class="wrapper">
-      <h1>Lectures</h1>
-      <div id="resp-table">
-        <div id="resp-table-header">
-          <div class="table-header-cell">
-            <b>Lecture Info</b>
+        <h1>Lectures</h1>
+        <div id="resp-table">
+          <div id="resp-table-header">
+            <div class="table-header-cell">
+              <b>Lecture Info</b>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="resp-table">
-        <div id="resp-table-header">
-          <div class="table-header-cell">Week</div>
-          <div class="table-header-cell">Topic</div>
-          <div class="table-header-cell">Wed-Pre-Lecture</div>
-          <div class="table-header-cell">Thur-Pre-Lecture</div>
-          <div class="table-header-cell">Wednesday-Video</div>
-          <div class="table-header-cell">Thursday-Video</div>
-        </div>
-        <div id="resp-table-body">
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>1</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Intro Worst Case Complexity</b>
-            </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Watch Big O Video</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"><b>Intro Slides PDF</b></a>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"><b>Worksheet PDF Zoom</b></a>
-            </div>
+        <div id="resp-table">
+          <div id="resp-table-header">
+            <div class="table-header-cell">Week</div>
+            <div class="table-header-cell">Topic</div>
+            <div class="table-header-cell">Wed-Pre-Lecture</div>
+            <div class="table-header-cell">Thur-Pre-Lecture</div>
+            <div class="table-header-cell">Wednesday-Video</div>
+            <div class="table-header-cell">Thursday-Video</div>
           </div>
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>2</b>
+          <div id="resp-table-body">
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>1</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Intro Worst Case Complexity</b>
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Watch Big O Video</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"><b>Intro Slides PDF</b></a>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"><b>Worksheet PDF Zoom</b></a>
+              </div>
             </div>
-            <div class="table-body-cell">
-              <b>Balanced Trees</b>
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>2</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Balanced Trees</b>
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Visualiztion Applet</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"><b>Slides PDF</b></a>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b>Inclass Worksheet PDF Zoom</b></a
+                >
+              </div>
             </div>
-            <div class="table-body-cell">
-              <b>None</b>
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>3</b>
+              </div>
+              <div class="table-body-cell">
+                <b>AVL Trees height, and Augment. Interval Trees</b>
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"><b>Slides PDF</b></a>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b>Interval Trees Worksheet PDF Zoom</b></a
+                >
+              </div>
             </div>
-            <div class="table-body-cell">
-              <b>Visualiztion Applet</b>
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>4</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Interval Trees, Heaps and Graph Search Algorithms</b>
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Chapter 6.1-6.4</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b>Interval Tree,Search Proof, Heaps, Zoom link</b></a
+                >
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b>Heaps Inclass, Heap Building Example, Zoom Link</b></a
+                >
+              </div>
             </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"><b>Slides PDF</b></a>
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>5</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Graph Searches and Minimum Spanning Trees</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Term Test Wed</b>
+              </div>
+              <div class="table-body-cell">
+                <b
+                  >If you have not had your tutorial, read the graph handout on
+                  the tutorials page</b
+                >
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b
+                    >Graph Search Slides, Searches Worksheet, MST Slides, MST
+                    Worksheet</b
+                  ></a
+                >
+              </div>
             </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b>Inclass Worksheet PDF Zoom</b></a
-              >
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>6</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Proof of Prims, Dijkstra's Algorithm</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Ch 24.3, Practice Prims algorithm</b>
+              </div>
+              <div class="table-body-cell">
+                <b>22.5, Review DFS - make sure you understand it</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b>MST In Class, Dijkstra, Zoom Link</b></a
+                >
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b
+                    >Strongly Connected Components Slides, SCC Examples, Zoom
+                    Link</b
+                  ></a
+                >
+              </div>
             </div>
-          </div>
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>3</b>
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>7</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Amortized Analysis</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Ch. 17.4, Ch. 21</b>
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b
+                    >Amortized Lecture slides, Amortized Lecture slides In Class,
+                    Zoom Link</b
+                  ></a
+                >
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b
+                    >Potential Lecture slides, Potential Lecture In Class, Zoom
+                    Link</b
+                  ></a
+                >
+              </div>
             </div>
-            <div class="table-body-cell">
-              <b>AVL Trees height, and Augment. Interval Trees</b>
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>8</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Disjoint Sets, Fibonacci Heaps</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Ch. 20</b>
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b>Disjoint Sets, Zoom Link</b></a
+                >
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b
+                    >Fibonacci Heaps Annotated, Fibonacci Heaps Complexity
+                    Annotated, Zoom Link</b
+                  ></a
+                >
+              </div>
             </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"><b>Slides PDF</b></a>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b>Interval Trees Worksheet PDF Zoom</b></a
-              >
-            </div>
-          </div>
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>4</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Interval Trees, Heaps and Graph Search Algorithms</b>
-            </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Chapter 6.1-6.4</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b>Interval Tree,Search Proof, Heaps, Zoom link</b></a
-              >
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b>Heaps Inclass, Heap Building Example, Zoom Link</b></a
-              >
-            </div>
-          </div>
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>5</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Graph Searches and Minimum Spanning Trees</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Term Test Wed</b>
-            </div>
-            <div class="table-body-cell">
-              <b
-                >If you have not had your tutorial, read the graph handout on
-                the tutorials page</b
-              >
-            </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b
-                  >Graph Search Slides, Searches Worksheet, MST Slides, MST
-                  Worksheet</b
-                ></a
-              >
-            </div>
-          </div>
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>6</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Proof of Prims, Dijkstra's Algorithm</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Ch 24.3, Practice Prims algorithm</b>
-            </div>
-            <div class="table-body-cell">
-              <b>22.5, Review DFS - make sure you understand it</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b>MST In Class, Dijkstra, Zoom Link</b></a
-              >
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b
-                  >Strongly Connected Components Slides, SCC Examples, Zoom
-                  Link</b
-                ></a
-              >
-            </div>
-          </div>
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>7</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Amortized Analysis</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Ch. 17.4, Ch. 21</b>
-            </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b
-                  >Amortized Lecture slides, Amortized Lecture slides In Class,
-                  Zoom Link</b
-                ></a
-              >
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b
-                  >Potential Lecture slides, Potential Lecture In Class, Zoom
-                  Link</b
-                ></a
-              >
-            </div>
-          </div>
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>8</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Disjoint Sets, Fibonacci Heaps</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Ch. 20</b>
-            </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b>Disjoint Sets, Zoom Link</b></a
-              >
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b
-                  >Fibonacci Heaps Annotated, Fibonacci Heaps Complexity
-                  Annotated, Zoom Link</b
-                ></a
-              >
-            </div>
-          </div>
 
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>9</b>
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>9</b>
+              </div>
+              <div class="table-body-cell">
+                <b
+                  >Fibonacci Complexity, Probability and Expected Case Analysis</b
+                >
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <b>None</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"><b>Probability Review</b></a>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"><b>Average Expected Case</b></a>
+              </div>
             </div>
-            <div class="table-body-cell">
-              <b
-                >Fibonacci Complexity, Probability and Expected Case Analysis</b
-              >
-            </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <b>None</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"><b>Probability Review</b></a>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"><b>Average Expected Case</b></a>
-            </div>
-          </div>
-          <div class="resp-table-row">
-            <div class="table-body-cell">
-              <b>10-12</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Direct Addressing(Hashing)</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Ch. 11 (except 11.5)</b>
-            </div>
-            <div class="table-body-cell">
-              <b>Ch. 11 (except 11.5)</b>
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b>Hashing 1 & Vassos Hashing 1</b></a
-              >
-            </div>
-            <div class="table-body-cell">
-              <a href="./files/dummy_doc.pdf"
-                ><b>Hashing 2, Vassos Hashing 2, Bloom Filters</b></a
-              >
+            <div class="resp-table-row">
+              <div class="table-body-cell">
+                <b>10-12</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Direct Addressing(Hashing)</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Ch. 11 (except 11.5)</b>
+              </div>
+              <div class="table-body-cell">
+                <b>Ch. 11 (except 11.5)</b>
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b>Hashing 1 & Vassos Hashing 1</b></a
+                >
+              </div>
+              <div class="table-body-cell">
+                <a href="./files/dummy_doc.pdf"
+                  ><b>Hashing 2, Vassos Hashing 2, Bloom Filters</b></a
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
-    {% endblock %}
-  </body>
-</html>
+  {% endblock %}

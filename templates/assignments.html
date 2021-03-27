@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Assignments</title>
-
+{% extends "template.html" %} 
+  {% block title %}Assignments{% endblock %}
+  {% block head %}
+    {{ super() }}
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/assignments.css') }}"
     />
-  </head>
-
-  <body>
-    {% extends "template.html" %} {% block content %}
-
+  {% endblock %}
+  {% block content %}
     <div class="wrapper">
       <h1>Assignments</h1>
       <div id="resp-table">
@@ -54,7 +47,4 @@
         </div>
       </div>
     </div>
-
-    {% endblock %}
-  </body>
-</html>
+  {% endblock %}
