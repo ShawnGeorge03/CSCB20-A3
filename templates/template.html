@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <input type="checkbox" id="nav-check" />
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        <div class="nav-links">
+          <a href="{{url_for('home')}}">Home</a>
+          <a href="{{url_for('home')}}">Announcements</a>
+          <a href="{{url_for('calendar')}}">Calendar</a>
+          <a 
+          href="https://piazza.com/class/kju7e2uwa8p3sf" 
+          target="_blank"
+        >Piazza</a
+          >
+          <a href="https://markus.utsc.utoronto.ca/cscb63w21" target="_blank"
+            >Markus</a
+          >
+          <a href="{{url_for('lectures')}}">Lectures</a>
+          <a href="{{url_for('labs')}}">Labs</a>
+          <a href="{{url_for('assignments')}}">Assignments</a>
+          <a href="{{url_for('tests')}}">Tests</a>
+          <a href="{{url_for('feedback')}}">Feedback</a>
+          <a href="{{url_for('team')}}">Team</a>
+          <a href="{{url_for('links')}}">Links</a>
+        </div>
+      </div>
+    </header>
+
+    {% block content %} 
+    {% endblock %}
+
+    <div class="footer">
+      <footer>
+        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science"
+          >Faculty of Computer Science at UofT</a
+        >
+        <p>
+          Site created by :
+          <br />
+          <a href="https://www.linkedin.com/in/shawnsg/"
+            >Shawn Santhoshgeorge</a
+          >
+          <br />
+          <a href="https://www.linkedin.com/in/harrison-iruthayathas-055409196/"
+            >Harrison Iruthayathas</a
+          >
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
