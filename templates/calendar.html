@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/calendar.css') }}"
+    />
+  </head>
+
+  <body>
+    {% extends "template.html" %} 
+    {% block content %}
+
+    <div class="wrapper">
+      <h1>Calendar</h1>
+      <p>
+        This the latest course calendar contain all the information regarding
+        time and location for lectures, tutorials, and office hours
+      </p>
+      <p>
+        If you wish to subscribe to the calendar the address is :
+        <a href="{{ url_for('static', filename='./files/CSCB63_Calendar.ics')}}"
+          >ical format</a
+        >
+      </p>
+    </div>
+
+    <div class="calendar">
+      <iframe
+        src="https://calendar.google.com/calendar/embed?src=pc4ish4k5qgo9gj2jktevn4eio%40group.calendar.google.com&ctz=America%2FToronto"
+        width="1000"
+        height="600"
+        frameborder="0"
+        scrolling="no"
+        loading="eager"
+      >
+      </iframe>
+    </div>
+    {% endblock %}
+  </body>
+</html>
