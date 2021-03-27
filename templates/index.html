@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSCB63</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+  </head>
+
+  <body>
+    {% extends "template.html" %} 
+    {% block content %}
+
+    <div class="wrapper">
+      <h1>Welcome to CSCB63</h1>
+
+      <div class="essentials">
+        <h2>Essentials</h2>
+        <p>
+          Design, analysis, implementation and comparison of efficient data
+          structures for common abstract data types. Priority queues: heaps and
+          mergeable heaps. Dictionaries: balanced binary search trees, B-trees,
+          hashing. Amortization: data structures for managing dynamic tables and
+          disjoint sets. Data structures for representing graphs. Graph
+          searches.
+        </p>
+        <p>Exclusion : CSC263H, CSC265H, (CSCC78H)</p>
+        <p>
+          Prerequisite : CSCB36H or (CSCB38H) & [CGPA 2.75 or enrolment in a CSC
+          subject POSt]
+        </p>
+        <a
+          class="links"
+          href="{{ url_for('static', filename='./files/dummy_doc.pdf')}}"
+          >Syllabus</a
+        >
+      </div>
+
+      <div class="container">
+        <div>
+          <h2>Instructor</h2>
+          <p>Dr. Anna Bretscher</p>
+          <p>anna.bretscher@utoronto.ca</p>
+          <p>IC 493</p>
+        </div>
+
+        <div>
+          <h2>Lectures</h2>
+          <p>Wednesdays 3-4pm</p>
+          <a class="links" href="https://utoronto.zoom.us/j/89553548645"
+            >Zoom Link</a
+          >
+          <p>Thursdays 9:10-11:00</p>
+          <a class="links" href="https://utoronto.zoom.us/j/83378932991"
+            >Zoom Link</a
+          >
+        </div>
+
+        <div>
+          <h2>Office Hours</h2>
+          <p>Mondays 11:00 AM to 12:30 PM</p>
+          <p>Friday 12:30 AM to 1:30 PM</p>
+        </div>
+      </div>
+
+      <div class="news" id="Announcements">
+        <h2>Announcements</h2>
+        <ul>
+          <li>Do not forget that Test 1 is on Wednesday</li>
+          <li>A2 has been released under Assignments</li>
+          <li>Test 2 date has been posted on the Calendar</li>
+          <li>Do not forget that Test 1 is on Monday</li>
+          <li>A1 has been released under Assignments</li>
+          <li>Test 1 date has been posted on the Calendar</li>
+          <li>Welcome to the first day of CSCB63</li>
+        </ul>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>
