@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/feedback.css') }}"
+    />
+  </head>
+
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <div class="wrapper">
+      <h1>Annonymous Feedback</h1>
+      <p>
+        This is an annoymous feedback for your to tell us how to better improve
+        the course
+      </p>
+      <form>
+        <label for="feedback">Enter feedback here : </label>
+        <textarea id="feedback" rows="5" cols="50"></textarea>
+        <div class="input">
+          <input type="reset" value="Reset" />
+          <input type="submit" value="Submit" />
+        </div>
+      </form>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>
