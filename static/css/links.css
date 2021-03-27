@@ -1,0 +1,15 @@
+.wrapper {
+  height: 722px;
+  width: 600px;
+}
+
+.wrapper p {
+  font-size: 30px;
+}
+
+@media (max-width: 893px) {
+  .wrapper {
+    height: 794px;
+    width: 400px;
+  }
+}

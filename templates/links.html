@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Links</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/links.css') }}"
+    />
+  </head>
+
+  <body>
+    {% extends "template.html" %} {% block content %}
+
+    <div class="wrapper">
+      <h1>Links</h1>
+      <p>
+        For LaTeX installations, go to the latex project install
+        <a href="http://latex-project.org/ftp.html">website</a>. Both the
+        Windows and Mac versions listed come with editors as well as the
+        packages and compilers.
+      </p>
+      <p>
+        Once you are up and running, I recommend downloading the
+        <a href="https://tobi.oetiker.ch/lshort/lshort.pdf" target="b"
+          >Not So Short Guide to LaTeX</a
+        >. Everything you need is there, however it may be overkill. You can
+        also start with this <a href="./files/template.tex">template.tex</a>
+        and add as you need.
+      </p>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>
