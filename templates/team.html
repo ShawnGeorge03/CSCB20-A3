@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Meet the Team</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/team.css') }}"
+    />
+  </head>
+
+  <body>
+    {% extends "template.html" %} {% block content %}
+
+    <div class="wrapper">
+      <h1>Our Team</h1>
+      <div class="team">
+        <div class="teamMember">
+          <h3>Dr. Anna Bretscher</h3>
+          <p>Professor</p>
+          <p>
+            Email:<a href="mailto:bretscher@utsc.utoronto.ca"
+              >bretscher@utsc.utoronto.ca</a
+            >
+          </p>
+          <p>
+            Office Hours:
+            <br />
+            11:00 AM to 12:30 PM Mondays
+            <br />
+            12:30 AM to 1:30 PM Fridays
+          </p>
+          <a>Zoom</a>
+        </div>
+
+        <div class="teamMember">
+          <h3>Andrew Davey</h3>
+          <p>TA</p>
+          <p>
+            Email:<a href="mailto:andrewdavey@utsc.utoronto.ca"
+              >andrewdavey@utsc.utoronto.ca</a
+            >
+          </p>
+          <p>
+            Tutorial 0001
+            <br />
+            1:00 PM to 3:30 PM Mondays
+          </p>
+          <a>Zoom</a>
+        </div>
+
+        <div class="teamMember">
+          <h3>Lydia Dorles</h3>
+          <p>TA</p>
+          <p>
+            Email:<a href="mailto:lydiadorles@utsc.utoronto.ca"
+              >lydiadorles@utsc.utoronto.ca</a
+            >
+          </p>
+          <p>
+            Tutorial 0002
+            <br />
+            9:00 AM to 11:00 AM Tuesdays
+          </p>
+          <a>Zoom</a>
+        </div>
+
+        <div class="teamMember">
+          <h3>Jared Dunn</h3>
+          <p>TA</p>
+          <p>
+            Email:<a href="mailto:jareddunn@utsc.utoronto.ca"
+              >jareddunn@utsc.utoronto.ca</a
+            >
+          </p>
+          <p>
+            Tutorial 0003
+            <br />
+            5:00 PM to 7:00 PM Wednesdays
+          </p>
+          <a>Zoom</a>
+        </div>
+
+        <div class="teamMember">
+          <h3>Micheal Rahman</h3>
+          <p>TA</p>
+          <p>
+            Email:<a href="mailto:michealrahman@utsc.utoronto.ca"
+              >michealrahman@utsc.utoronto.ca</a
+            >
+          </p>
+          <p>
+            Tutorial 0004
+            <br />
+            1:00 PM to 3:00 PM Thursdays
+          </p>
+          <a>Zoom</a>
+        </div>
+
+        <div class="teamMember">
+          <h3>Kirstin Archer</h3>
+          <p>TA</p>
+          <p>
+            Email:<a href="mailto:kirstinarcher@utsc.utoronto.ca"
+              >kirstinarcher@utsc.utoronto.ca</a
+            >
+          </p>
+          <p>
+            Tutorial 0006
+            <br />
+            2:00 PM to 4:00 PM Fridays
+          </p>
+          <a>Zoom</a>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>
