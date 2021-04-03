@@ -1,0 +1,21 @@
+{% extends "template.html" %} 
+  {% block title %}Login{% endblock %} 
+  {% block head%} 
+  {{ super() }}
+
+  {% endblock %} {% block content %}
+    <div class="wrapper">
+      <form method="post">
+        <p>{{msg}}</p>
+        <p>Enter your first name: <input type="text" name="firstName" /></p>
+        <p>Enter your last name: <input type="text" name="lastName" /></p>
+
+        <input type="radio" name="usertype" id="option1" value="Student" checked="checked"> Student </input>
+        <input type="radio" name="usertype" id="option2" value="Instructor"> Instructor </input>
+
+        <p>Enter your username: <input type="text" name="username" /></p>
+        <p>Enter your password: <input type="password" name="password" /></p>
+        <p><input type="submit" value="Submit" /></p>
+       </form>
+    </div>
+  {% endblock %}
