@@ -24,7 +24,7 @@
           </label>
         </div>
         <div class="nav-links">
-          {% if not session['username'] %}
+          {% if not session['userID'] %}
             <a href="{{url_for('login')}}">Login</a>
             <a href="{{url_for('signup')}}">Sign up</a>
           {% else %}

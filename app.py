@@ -8,8 +8,6 @@ from flask import Flask, render_template, request, g, session, redirect, url_for
 DATABASE = 'logindatabase.db'
 
 # connects to the database
-
-
 def get_db():
     # if there is a database, use it
     db = getattr(g, '_database', None)
@@ -20,16 +18,12 @@ def get_db():
 
 # converts the tuples from get_db() into dictionaries
 # (don't worry if you don't understand this code)
-
-
 def make_dicts(cursor, row):
     return dict((cursor.description[idx][0], value)
                 for idx, value in enumerate(row))
 
 # given a query, executes and returns the result
 # (don't worry if you don't understand this code)
-
-
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
@@ -43,8 +37,6 @@ app.secret_key = b'abbas'
 
 # this function gets called when the Flask app shuts down
 # tears down the database connection
-
-
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
@@ -56,22 +48,16 @@ def close_connection(exception):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        sql = """
-			SELECT *
-			FROM users
-			"""
-        results = query_db(sql, args=(), one=False)
+        results = query_db('SELECT * FROM users', args=(), one=False)
         formStatus = isFormFilled(request.form)
-        if len(formStatus) != 0:
-            return render_template('login.html', msg=formStatus)
-        
+        if len(formStatus) != 0: return render_template('login.html', msg=formStatus)
         for result in results:
             if result[1] == request.form['username']:
                 if result[2] == request.form['password']:
-                    session['username'] = result[0]
+                    session['userID'] = result[0]
                     return redirect(url_for('index'))
         return render_template('login.html', msg="Incorrect UserName/Password")
-    elif 'username' in session:
+    elif 'userID' in session:
         return redirect(url_for('index'))
     else:
         return render_template('login.html', msg="")
@@ -82,20 +68,15 @@ def signup():
     db = get_db()
     db.row_factory = make_dicts
     cur = db.cursor()
-
     if request.method == 'POST':
         accInfo = request.form
         formStatus = isFormFilled(accInfo)
-        if len(formStatus) != 0:
-            return render_template('signup.html', msg=formStatus)
-        result = query_db('SELECT * FROM users WHERE username = ?',
-                          [accInfo['username']], one=True)
-        if(result == None):
+        if len(formStatus) != 0: return render_template('signup.html', msg=formStatus)
+        result = query_db('SELECT * FROM users WHERE username = ?', [accInfo['username']], one=True)
+        if result == None:
             if isStrongPassword(accInfo['username'], accInfo['password']):
-                primaryKey = query_db('SELECT max(id) AS currID FROM users', one=True)[
-                    'currID'] + 1
-                cur.execute('INSERT INTO users VALUES (?, ?, ?)',
-                            [primaryKey, accInfo['username'], accInfo['password']])
+                primaryKey = query_db('SELECT max(id) AS currID FROM users', one=True)['currID'] + 1
+                cur.execute('INSERT INTO users VALUES (?, ?, ?, ?, ?)', [primaryKey, accInfo['username'], accInfo['password'], accInfo['name'], accInfo['usertype']])
                 db.commit()
                 cur.close()
                 return render_template('signup.html', msg="An account has been made")
@@ -108,9 +89,8 @@ def signup():
 
 def isFormFilled(accInfo):
     accInfoKeyMap = {
-        'firstName': "First Name",
-        'lastName': "Last Name",
-        'userType': "User type",
+        'name': "Name",
+        'usertype': "User type",
         'username': "Username",
         'password': "Password"
     }
@@ -141,7 +121,7 @@ def isStrongPassword(username, password):
 
 @app.route('/')
 def index():
-    if 'username' in session:
+    if 'userID' in session:
         # return 'Logged in as %s <a href="/logout">Logout</a>' % escape(session['username'])
         return render_template('index.html')
     return redirect(url_for('login'))
@@ -189,7 +169,7 @@ def links():
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
+    session.pop('userID', None)
     return redirect(url_for('login'))
 
 
