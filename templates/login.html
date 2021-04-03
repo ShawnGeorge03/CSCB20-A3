@@ -1,0 +1,15 @@
+{% extends "template.html" %} 
+  {% block title %}Login{% endblock %} 
+  {% block head%} 
+  {{ super() }}
+
+  {% endblock %} {% block content %}
+    <div class="wrapper">
+      <form method="post">
+        <p>{{msg}}</p>
+        <p>Enter your username: <input type="text" name="username" /></p>
+        <p>Enter your password: <input type="password" name="password" /></p>
+        <p><input type="submit" value="Submit" /></p>
+      </form>
+    </div>
+  {% endblock %}
