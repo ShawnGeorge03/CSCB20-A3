@@ -155,7 +155,7 @@ def feedback():
     usertype = query_db('SELECT name, usertype FROM users WHERE id = ?', [session['userID']], one=True)['usertype']
     if usertype == "Student":
         instructorNames = [instructorDict['name'] for instructorDict in query_db('SELECT name FROM users WHERE usertype = ?', ['Instructor'])]
-        feedbackQn = [questionsDict['question'] for questionsDict in query_db('SELECT * FROM feedbackQn') ]
+        feedbackQn = [questionsDict['question'] for questionsDict in query_db('SELECT question FROM feedbackQn') ]
         if request.method == "POST":
             anonForm = request.form
             formStatus = isFormFilled(anonForm, {
@@ -175,7 +175,10 @@ def feedback():
                 cur.close()
         return render_template("feedback.html", usertype=escape(usertype), instructors=instructorNames, questions=feedbackQn, len=len(feedbackQn), msg="")
     elif usertype == "Instructor":
-        return render_template("feedback.html", usertype=escape(usertype))
+        feedbackQn = [questionsDict for questionsDict in query_db('SELECT * FROM feedbackQn')]
+        results = query_db('SELECT * FROM feedbackAns WHERE id = ?', [session['userID']])
+        results = ["None"] if len(results) == 0 else results
+        return render_template("feedback.html", usertype=escape(usertype), questions=feedbackQn, len=len(feedbackQn), answers=results)
     
 @app.route("/team")
 def team():

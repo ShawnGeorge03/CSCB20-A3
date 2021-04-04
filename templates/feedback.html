@@ -10,8 +10,8 @@
   {% block content %}
     <div class="wrapper">
       <h1>Annonymous Feedback</h1>
-      <p> This is an annoymous feedback for your to tell us how to better improve the course </p>
       {% if usertype=="Student" %}
+        <p> This is an annoymous feedback for your to tell us how to better improve the course </p>
         <p>{{msg}}</p>
         <form method="post">
           <div class="instructors">
@@ -36,15 +36,19 @@
       {%endif%}
 
       {% if usertype=="Instructor" %}
-        <form>
-          <label for="feedback">Enter LOLO here : </label>
-          <textarea id="feedback" rows="5" cols="50"></textarea>
-          <div class="input">
-            <input type="reset" value="Reset" />
-            <input type="submit" value="Submit" />
-          </div>
-        </form>
+        <div class="questions">
+          {%for qn in questions%}
+            <p>{{qn.question}}</p>
+            <div class="answers">
+              {%for ans in answers %}
+                {% if qn.numQn not in ans %}
+                  <p>None</p>
+                {% endif %}
+                <p>{{ans[qn.numQn]}}</p>
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
       {%endif%}
-    
     </div>
   {% endblock %}
