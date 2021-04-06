@@ -49,7 +49,7 @@ def close_connection(exception):
 def login():
     if request.method == 'POST':
         results = query_db('SELECT * FROM users', args=(), one=False)
-        formStatus = isFormFilled(request.form)
+        formStatus = isFormFilled(request.form, {'username': "Username", 'password': "Password"})
         if len(formStatus) != 0: return render_template('login.html', msg=formStatus)
         for result in results:
             if result[1] == request.form['username']:
@@ -70,7 +70,7 @@ def signup():
     cur = db.cursor()
     if request.method == 'POST':
         accInfo = request.form
-        formStatus = isFormFilled(accInfo)
+        formStatus = isFormFilled(accInfo, {'name': "Name", 'usertype': "User type", 'username': "Username", 'password': "Password"})
         if len(formStatus) != 0: return render_template('signup.html', msg=formStatus)
         result = query_db('SELECT * FROM users WHERE username = ?', [accInfo['username']], one=True)
         if result == None:
@@ -87,16 +87,10 @@ def signup():
     return render_template('signup.html', msg="")
 
 
-def isFormFilled(accInfo):
-    accInfoKeyMap = {
-        'name': "Name",
-        'usertype': "User type",
-        'username': "Username",
-        'password': "Password"
-    }
-    for key in accInfo.keys():
-        if len(accInfo[key]) == 0:
-            return str(accInfoKeyMap[key]) + " is missing"
+def isFormFilled(accInfo, keyMap):
+    for key in keyMap.keys():
+        if (key not in accInfo) or (len(accInfo[key]) == 0):
+            return str(keyMap[key]) + " is missing"
     return ""
 
 
@@ -122,8 +116,10 @@ def isStrongPassword(username, password):
 @app.route('/')
 def index():
     if 'userID' in session:
-        # return 'Logged in as %s <a href="/logout">Logout</a>' % escape(session['username'])
-        return render_template('index.html')
+        db = get_db()
+        db.row_factory = make_dicts
+        results = query_db('SELECT name, usertype FROM users WHERE id = ?', [session['userID']], one=True)
+        return render_template('index.html', name=escape(results['name']) , usertype=escape(results['usertype']))
     return redirect(url_for('login'))
 
 
@@ -152,11 +148,38 @@ def tests():
     return render_template("tests.html")
 
 
-@app.route("/feedback")
+@app.route("/feedback", methods=['GET', 'POST'])
 def feedback():
-    return render_template("feedback.html")
-
-
+    db = get_db()
+    db.row_factory = make_dicts
+    usertype = query_db('SELECT name, usertype FROM users WHERE id = ?', [session['userID']], one=True)['usertype']
+    if usertype == "Student":
+        instructorNames = [instructorDict['name'] for instructorDict in query_db('SELECT name FROM users WHERE usertype = ?', ['Instructor'])]
+        feedbackQn = [questionsDict['question'] for questionsDict in query_db('SELECT question FROM feedbackQn') ]
+        if request.method == "POST":
+            anonForm = request.form
+            formStatus = isFormFilled(anonForm, {
+                'instructor': "Instructor",
+                'qn0': "Question 0",
+                'qn1': "Question 1",
+                'qn2': "Question 2",
+                'qn3': "Question 3",
+            })
+            if len(formStatus) != 0: 
+                return render_template("feedback.html", usertype=escape(usertype), instructors=instructorNames, questions=feedbackQn, len=len(feedbackQn), msg=formStatus)
+            else:
+                cur = db.cursor()
+                primaryKey = query_db('SELECT id FROM users WHERE name = ?', [anonForm['instructor']], one=True)['id']
+                cur.execute('INSERT INTO feedbackAns VALUES (?, ?, ?, ?, ?)', [primaryKey, anonForm['qn0'], anonForm['qn1'], anonForm['qn2'], anonForm['qn3']])
+                db.commit()
+                cur.close()
+        return render_template("feedback.html", usertype=escape(usertype), instructors=instructorNames, questions=feedbackQn, len=len(feedbackQn), msg="")
+    elif usertype == "Instructor":
+        feedbackQn = [questionsDict for questionsDict in query_db('SELECT * FROM feedbackQn')]
+        results = query_db('SELECT * FROM feedbackAns WHERE id = ?', [session['userID']])
+        results = ["None"] if len(results) == 0 else results
+        return render_template("feedback.html", usertype=escape(usertype), questions=feedbackQn, len=len(feedbackQn), answers=results)
+    
 @app.route("/team")
 def team():
     return render_template("team.html")

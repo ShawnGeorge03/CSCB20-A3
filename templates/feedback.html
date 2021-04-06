@@ -10,17 +10,45 @@
   {% block content %}
     <div class="wrapper">
       <h1>Annonymous Feedback</h1>
-      <p>
-        This is an annoymous feedback for your to tell us how to better improve
-        the course
-      </p>
-      <form>
-        <label for="feedback">Enter feedback here : </label>
-        <textarea id="feedback" rows="5" cols="50"></textarea>
-        <div class="input">
-          <input type="reset" value="Reset" />
-          <input type="submit" value="Submit" />
+      {% if usertype=="Student" %}
+        <p> This is an annoymous feedback for your to tell us how to better improve the course </p>
+        <p>{{msg}}</p>
+        <form method="post">
+          <div class="instructors">
+            <p>Choose the instructor you want to send feedback</p>
+            {% for instructor in instructors %}
+              <input type="radio" name="instructor" id="option1" value={{instructor}}>{{instructor}}</input>
+            {% endfor %}
+          </div>
+          <div class="questions">
+            {% for i in range(0, len)%}
+            <div class="question">
+              <label for="feedback">Q{{i}} : {{questions[i]}}</label>
+              <textarea name="qn{{i}}" id="feedback" rows="5" cols="50"></textarea>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="input">
+            <input type="reset" value="Reset" />
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+      {%endif%}
+
+      {% if usertype=="Instructor" %}
+        <div class="questions">
+          {%for qn in questions%}
+            <p>{{qn.question}}</p>
+            <div class="answers">
+              {%for ans in answers %}
+                {% if qn.numQn not in ans %}
+                  <p>None</p>
+                {% endif %}
+                <p>{{ans[qn.numQn]}}</p>
+              {% endfor %}
+            </div>
+          {% endfor %}
         </div>
-      </form>
+      {%endif%}
     </div>
   {% endblock %}
