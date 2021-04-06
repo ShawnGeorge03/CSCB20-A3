@@ -99,7 +99,7 @@ a:hover {
   text-align: center;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1200px) {
   .wrapper {
     width: 400px;
     overflow: hidden;
