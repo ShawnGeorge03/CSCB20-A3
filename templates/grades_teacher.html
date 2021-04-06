@@ -1,0 +1,78 @@
+{% extends "template.html" %}
+{% block title %}Grades{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/labs.css') }}"/>
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+
+  
+  <h1>Grades</h1>
+  <div id="resp-table">
+    <div id="resp-table-header">
+      <div class="table-header-cell">
+        <b>Students' grades for CSCB63</b>
+      </div>
+    </div>
+  </div>
+  <div id="resp-table">
+    <div id="resp-table-header">
+      <div class="table-header-cell">
+        Student
+      </div>
+      <div class="table-header-cell">
+        Quiz 1
+      </div>
+      <div class="table-header-cell">
+        Quiz 2
+      </div>
+      <div class="table-header-cell">
+        Quiz 3
+      </div>
+      <div class="table-header-cell">
+        Midterm Exam
+      </div>
+      <div class="table-header-cell">
+        Final Exam
+      </div>
+      <div class="table-header-cell">
+        Submit
+      </div>
+    </div>
+    <div id="resp-table-body">
+      {% for m in mark_book %}
+      <div class="resp-table-row" id="student_{{ m }}">
+        <div class="table-body-cell">
+          <b>{{ m }}</b>
+        </div>
+        <div class="table-body-cell ">
+          <b id="{{ m }}_quiz1">{{ mark_book[m][0] }}</b>
+         
+        </div>
+        <div class="table-body-cell ">
+          <b id="{{ m }}_quiz2">{{ mark_book[m][1] }}</b>
+          
+        </div>
+        <div class="table-body-cell ">
+          <b id="{{ m }}_quiz3">{{ mark_book[m][2] }}</b>
+          
+        </div>
+        <div class="table-body-cell ">
+          <b id="{{ m }}_midtermexam">{{ mark_book[m][3] }}</b>
+          
+        </div>
+        <div class="table-body-cell finalexam">
+          <b id="{{ m }}_finalexam">{{ mark_book[m][4] }}</b>
+          
+        </div>
+        <div class="table-body-cell">
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+

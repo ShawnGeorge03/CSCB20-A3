@@ -172,6 +172,67 @@ def logout():
     session.pop('userID', None)
     return redirect(url_for('login'))
 
+def get_student_grades(username):
+    grades = []
+    for i in range(5):
+        grades.append("Not graded yet")
+    result = query_db('SELECT MAX(quiz1) FROM marks WHERE student_username = ?', [username], one=True)
+    grades[0] = result[0] if result[0]  else "Not graded yet"
+    print(grades[0])
+    result = query_db('SELECT MAX(quiz2) FROM marks WHERE student_username = ?', [username], one=True)
+    grades[1] = result[0] if result[0]  else "Not graded yet"
+
+    result = query_db('SELECT MAX(quiz3) FROM marks WHERE student_username = ?', [username], one=True)
+    grades[2] = result[0] if result[0]  else "Not graded yet"
+
+    result = query_db('SELECT MAX(midtermexam) FROM marks WHERE student_username = ?', [username], one=True)
+    grades[3] = result[0] if result[0]  else "Not graded yet"
+
+    result = query_db('SELECT MAX(finalexam) FROM marks WHERE student_username = ?', [username], one=True)
+    grades[4] = result[0] if result[0] else "Not graded yet"
+
+    return grades
+
+def get_current_username():
+    result = query_db('SELECT username FROM users WHERE id = ?', args=[session['userID']], one=True)
+    return result[0]
+
+def get_current_name():
+    result = query_db('SELECT name FROM users WHERE id = ?', args=[session['userID']], one=True)
+    return result[0]
+
+def get_current_usertype():
+    result = query_db('SELECT usertype FROM users WHERE id = ?', args=[session['userID']], one=True)
+    return result[0]
+
+@app.route("/grades")
+def grades():
+    if 'userID' in session:
+        usertype = get_current_usertype()
+
+        if usertype=="Student":
+            username = get_current_username()
+            grades = get_student_grades(username)
+            return render_template('grades_student.html',grades=grades)
+        elif usertype=='Instructor':
+            student_list = query_db("SELECT username FROM users WHERE usertype = 'Student'", args=(), one=False)
+            r_requests = query_db("SELECT student_username,test FROM requests", args=(), one=False)
+
+            remark_requests = {}
+            for r in r_requests:
+                if r[0] not in remark_requests:
+                    remark_requests[r[0]] = []
+                remark_requests[r[0]].append(r[1])
+
+
+            mark_book = {}
+            for s in student_list:
+                grades = get_student_grades(s[0])
+                mark_book[s[0]] = grades
+
+            return render_template('grades_teacher.html',mark_book=mark_book,remark_requests=remark_requests)
+
+    return redirect(url_for('login'))
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

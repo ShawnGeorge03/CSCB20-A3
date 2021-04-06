@@ -1,0 +1,93 @@
+
+{% extends "template.html" %}
+{% block title %}My Grades{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/labs.css') }}"
+  />
+{% endblock %}
+{% block content %}
+  <div class="wrapper">
+    <h1>Grades</h1>
+    <div id="resp-table">
+      <div id="resp-table-header">
+        <div class="table-header-cell">
+          <b>Your grades for CSCB63</b>
+        </div>
+      </div>
+    </div>
+    <div id="resp-table">
+      <div id="resp-table-header">
+        <div class="table-header-cell">
+          Test
+        </div>
+        <div class="table-header-cell">
+          Grade
+        </div>
+        <div class="table-header-cell">
+          Remark
+        </div>
+      </div>
+      <div id="resp-table-body">
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>Quiz 1</b>
+          </div>
+          <div class="table-body-cell">
+            <b>
+              {{ grades[0] }}</b>
+          </div>
+          <div class="table-body-cell">
+            
+          </div> 
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>Quiz 2</b>
+          </div>
+          <div class="table-body-cell">
+            <b>{{ grades[1] }}</b>
+          </div>
+          <div class="table-body-cell">
+            
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>Quiz 3</b>
+          </div>
+          <div class="table-body-cell">
+            <b>{{ grades[2] }}</b>
+          </div>
+          <div class="table-body-cell">
+            
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>Midterm Exam</b>
+          </div>
+          <div class="table-body-cell">
+            <b>{{ grades[3] }}</b>
+          </div>
+          <div class="table-body-cell">
+            
+          </div>
+        </div>
+        <div class="resp-table-row">
+          <div class="table-body-cell">
+            <b>Final Exam</b>
+          </div>
+          <div class="table-body-cell">
+            <b>{{ grades[4] }}</b>
+          </div>
+          <div class="table-body-cell">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
