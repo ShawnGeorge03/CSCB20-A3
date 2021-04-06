@@ -3,17 +3,18 @@
   {% block head%} 
   {{ super() }}
 
-  {% endblock %} {% block content %}
+  {% endblock %} 
+  {% block content %}
     <div class="wrapper">
       <form method="post">
         <p>{{msg}}</p>
-        <p>Enter your name: <input type="text" name="name" /></p>
+        <p>Enter your name: <input type="text" name="name" required=""/></p>
 
-        <input type="radio" name="usertype" id="option1" value="Student"> Student </input>
-        <input type="radio" name="usertype" id="option2" value="Instructor"> Instructor </input>
+        <input type="radio" name="usertype" id="option1" value="Student" required=""> Student </input>
+        <input type="radio" name="usertype" id="option2" value="Instructor" required=""> Instructor </input>
 
-        <p>Enter your username: <input type="text" name="username" /></p>
-        <p>Enter your password: <input type="password" name="password" /></p>
+        <p>Enter your username: <input type="text" name="username" required="" /></p>
+        <p>Enter your password: <input type="password" name="password" required="" /></p>
         <p><input type="submit" value="Submit" /></p>
        </form>
     </div>
