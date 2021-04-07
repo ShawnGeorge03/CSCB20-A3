@@ -49,8 +49,6 @@ def close_connection(exception):
 def login():
     if request.method == 'POST':
         results = query_db('SELECT * FROM users', args=(), one=False)
-        formStatus = isFormFilled(request.form, {'username': "Username", 'password': "Password"})
-        if len(formStatus) != 0: return render_template('login.html', msg=formStatus)
         for result in results:
             if result[1] == request.form['username']:
                 if result[2] == request.form['password']:
@@ -70,8 +68,6 @@ def signup():
     cur = db.cursor()
     if request.method == 'POST':
         accInfo = request.form
-        formStatus = isFormFilled(accInfo, {'name': "Name", 'usertype': "User type", 'username': "Username", 'password': "Password"})
-        if len(formStatus) != 0: return render_template('signup.html', msg=formStatus)
         result = query_db('SELECT * FROM users WHERE username = ?', [accInfo['username']], one=True)
         if result == None:
             if isStrongPassword(accInfo['username'], accInfo['password']):
@@ -85,13 +81,6 @@ def signup():
         else:
             return render_template('signup.html', msg="Not unique username")
     return render_template('signup.html', msg="")
-
-
-def isFormFilled(accInfo, keyMap):
-    for key in keyMap.keys():
-        if (key not in accInfo) or (len(accInfo[key]) == 0):
-            return str(keyMap[key]) + " is missing"
-    return ""
 
 
 def isStrongPassword(username, password):
@@ -158,22 +147,12 @@ def feedback():
         feedbackQn = [questionsDict['question'] for questionsDict in query_db('SELECT question FROM feedbackQn') ]
         if request.method == "POST":
             anonForm = request.form
-            formStatus = isFormFilled(anonForm, {
-                'instructor': "Instructor",
-                'qn0': "Question 0",
-                'qn1': "Question 1",
-                'qn2': "Question 2",
-                'qn3': "Question 3",
-            })
-            if len(formStatus) != 0: 
-                return render_template("feedback.html", usertype=escape(usertype), instructors=instructorNames, questions=feedbackQn, len=len(feedbackQn), msg=formStatus)
-            else:
-                cur = db.cursor()
-                primaryKey = query_db('SELECT id FROM users WHERE name = ?', [anonForm['instructor']], one=True)['id']
-                cur.execute('INSERT INTO feedbackAns VALUES (?, ?, ?, ?, ?)', [primaryKey, anonForm['qn0'], anonForm['qn1'], anonForm['qn2'], anonForm['qn3']])
-                db.commit()
-                cur.close()
-        return render_template("feedback.html", usertype=escape(usertype), instructors=instructorNames, questions=feedbackQn, len=len(feedbackQn), msg="")
+            cur = db.cursor()
+            primaryKey = query_db('SELECT id FROM users WHERE name = ?', [anonForm['instructor']], one=True)['id']
+            cur.execute('INSERT INTO feedbackAns VALUES (?, ?, ?, ?, ?)', [primaryKey, anonForm['qn0'], anonForm['qn1'], anonForm['qn2'], anonForm['qn3']])
+            db.commit()
+            cur.close()
+        return render_template("feedback.html", usertype=escape(usertype), instructors=instructorNames, questions=feedbackQn, len=len(feedbackQn))
     elif usertype == "Instructor":
         feedbackQn = [questionsDict for questionsDict in query_db('SELECT * FROM feedbackQn')]
         results = query_db('SELECT * FROM feedbackAns WHERE id = ?', [session['userID']])
