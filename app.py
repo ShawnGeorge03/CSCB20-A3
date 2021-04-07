@@ -115,7 +115,8 @@ def index():
     # If the user is not logged in then redirects them to login page
     return redirect(url_for('login'))
 
-
+# This function gets called when the user is trying to 
+# acess the calendar page of the CSCB63 website
 @app.route("/calendar")
 def calendar():
     return render_template("calendar.html")
