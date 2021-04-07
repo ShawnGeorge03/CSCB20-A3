@@ -1,4 +1,3 @@
-
 {% extends "template.html" %}
 {% block title %}My Grades{% endblock %}
 {% block head %}
@@ -40,7 +39,10 @@
               {{ grades[0] }}</b>
           </div>
           <div class="table-body-cell">
-            
+            <form action="/remark" method="post">
+                <input type="hidden" name="test" value="quiz1">
+                <button type="submit">Request remark</button>
+              </form>
           </div> 
         </div>
         <div class="resp-table-row">
@@ -51,7 +53,10 @@
             <b>{{ grades[1] }}</b>
           </div>
           <div class="table-body-cell">
-            
+            <form action="/remark" method="post">
+                <input type="hidden" name="test" value="quiz2">
+                <button type="submit">Request remark</button>
+              </form>
           </div>
         </div>
         <div class="resp-table-row">
@@ -62,7 +67,10 @@
             <b>{{ grades[2] }}</b>
           </div>
           <div class="table-body-cell">
-            
+            <form action="/remark" method="post">
+                <input type="hidden" name="test" value="quiz3">
+                <button type="submit">Request remark</button>
+              </form>
           </div>
         </div>
         <div class="resp-table-row">
@@ -73,7 +81,10 @@
             <b>{{ grades[3] }}</b>
           </div>
           <div class="table-body-cell">
-            
+            <form action="/remark" method="post">
+                <input type="hidden" name="test" value="midtermexam">
+                <button type="submit">Request remark</button>
+              </form>
           </div>
         </div>
         <div class="resp-table-row">
@@ -84,7 +95,10 @@
             <b>{{ grades[4] }}</b>
           </div>
           <div class="table-body-cell">
-            
+            <form action="/remark" method="post">
+                <input type="hidden" name="test" value="finalexam">
+                <button type="submit">Request remark</button>
+              </form>
           </div>
         </div>
       </div>
