@@ -17,23 +17,71 @@ form textarea {
   width: inherit;
   height: 150px;
   border: 3px solid #cccccc;
+  margin: 50px;
   padding: 5px;
   font-family: Tahoma, sans-serif;
   font-size: 20px;
-  resize: vertical;
+  resize: none;
   margin-top: 25px;
+  border-radius: 15px;
 }
 
 form .question {
+  display: flex;
+  flex-direction: column;
   margin-top: 50px;
+}
+
+.required {
+  color: red;
+}
+
+.input {
+  margin: 15px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+  color: wheat;
+  background-color: steelblue;
+  padding: 15px 25px;
+  font-size: 16px;
+  margin: 25px;
 }
 
 @media (max-width: 893px) {
   .wrapper {
-    width: 400px;
+    width: 530px;
+    overflow: hidden;
   }
 
   form textarea {
-    resize: none;
+    width: 450px;
+  }
+
+  .wrapper p {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper {
+    width: 400px;
+    overflow: hidden;
+  }
+
+  .wrapper h1 {
+    color: red;
+    font-size: 40px;
+  }
+
+  .wrapper p {
+    display: flex;
+    width: 320px;
+    margin-left: 10px;
+  }
+
+  form textarea {
+    width: 300px;
   }
 }
