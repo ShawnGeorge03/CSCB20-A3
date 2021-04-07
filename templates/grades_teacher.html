@@ -3,11 +3,40 @@
 {% block head %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/labs.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}"/>
 {% endblock %}
 {% block content %}
 <div class="wrapper">
+ <!-- The Modal https://www.w3schools.com/howto/howto_css_modals.asp -->
+ <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="current_student">@username</p>
+      <form action="/putgrades" method="post">
+        
+        <input type="hidden" name="username" id="student_username">
+        <div class="modal-body"><label>Quiz 1</label></div>
+        <input type="number" name="quiz1" id="input_quiz1">
+        <br>
+        <div class="modal-body"><label>Quiz 2</label></div>
+        <input type="number" name="quiz2" id="input_quiz2">
+        <br>
+        <div class="modal-body"><label>Quiz 3</label></div>
+        <input type="number" name="quiz3" id="input_quiz3">
+        <br>
+        <div class="modal-body"><label>Midterm Exam</label></div>
+        <input type="number" name="midtermexam" id="input_midtermexam">
+        <br>
+        <div class="modal-body"><label>Final Exam</label></div>
+        <input type="number" name="finalexam" id="input_finalexam">
+        <br>
+        <div class="modal-body"><button type="submit">Update</button></div>
+        
+      </form>
+    </div>
+  </div> 
 
-  
   <h1>Grades</h1>
   <div id="resp-table">
     <div id="resp-table-header">
@@ -48,26 +77,41 @@
         </div>
         <div class="table-body-cell ">
           <b id="{{ m }}_quiz1">{{ mark_book[m][0] }}</b>
-         
+          <b>{% if m in remark_requests and 'quiz1' in remark_requests[m]%}
+            (Remark request)
+            {%endif%}
+          </b>
         </div>
         <div class="table-body-cell ">
           <b id="{{ m }}_quiz2">{{ mark_book[m][1] }}</b>
-          
+          <b>{% if m in remark_requests and 'quiz2' in remark_requests[m]%}
+            (Remark request)
+            {%endif%}
+          </b>
         </div>
         <div class="table-body-cell ">
           <b id="{{ m }}_quiz3">{{ mark_book[m][2] }}</b>
-          
+          <b>{% if m in remark_requests and 'quiz3' in remark_requests[m]%}
+            (Remark request)
+            {%endif%}
+            </b>
         </div>
         <div class="table-body-cell ">
           <b id="{{ m }}_midtermexam">{{ mark_book[m][3] }}</b>
-          
+          <b>{% if m in remark_requests and 'midtermexam' in remark_requests[m]%}
+          (Remark request)
+          {%endif%}
+          </b>
         </div>
         <div class="table-body-cell finalexam">
           <b id="{{ m }}_finalexam">{{ mark_book[m][4] }}</b>
-          
+          {% if m in remark_requests and 'finalexam' in remark_requests[m]%}
+          (Remark request)
+          {%endif%}
+        </b>
         </div>
         <div class="table-body-cell">
-          
+            <b><button class="myBtn" onclick="openModal(this);" data-username="{{ m }}">Update Marks</button></b> 
         </div>
       </div>
       {% endfor %}
@@ -76,3 +120,38 @@
 </div>
 {% endblock %}
 
+{% block script %}
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on the button, open the modal
+  function openModal(btn) {
+    console.log(btn.getAttribute("data-username"));
+    modal.style.display = "block";
+    document.getElementById("current_student").innerHTML="@"+btn.getAttribute("data-username");
+
+    document.getElementById("input_quiz1").value = document.getElementById(btn.getAttribute("data-username")+"_quiz1").innerHTML;
+    document.getElementById("input_quiz2").value = document.getElementById(btn.getAttribute("data-username")+"_quiz2").innerHTML;
+    document.getElementById("input_quiz3").value = document.getElementById(btn.getAttribute("data-username")+"_quiz3").innerHTML;
+    document.getElementById("input_midtermexam").value = document.getElementById(btn.getAttribute("data-username")+"_midtermexam").innerHTML;
+    document.getElementById("input_finalexam").value = document.getElementById(btn.getAttribute("data-username")+"_finalexam").innerHTML;
+    document.getElementById("student_username").value = btn.getAttribute("data-username");
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+{% endblock %}

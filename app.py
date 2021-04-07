@@ -215,6 +215,10 @@ def get_student_grades(username):
     grades[4] = result[0] if result[0] else "Not graded yet"
 
     return grades
+    
+def check_if_graded(student):
+    result = query_db('SELECT * FROM marks WHERE student_username = ?', [student], one=False)
+    return True if result else False
 
 def get_current_username():
     result = query_db('SELECT username FROM users WHERE id = ?', args=[session['userID']], one=True)
@@ -256,6 +260,47 @@ def grades():
             return render_template('grades_teacher.html',mark_book=mark_book,remark_requests=remark_requests)
 
     return redirect(url_for('login'))
+
+@app.route("/remark", methods=['POST'])
+def request_remark():
+    if request.method == 'POST':
+        username = get_current_username()
+        test = request.form['test']
+
+        db = get_db()
+        db.row_factory = make_dicts
+        cur = db.cursor()
+        cur.execute('INSERT INTO requests(student_username,test) VALUES (?, ?)', [username,test])
+        db.commit()
+        cur.close()
+
+        return redirect(url_for('grades'))
+
+@app.route("/putgrades", methods=['POST'])
+def put_grades():
+    if request.method == 'POST':
+        username = request.form['username']
+        quiz1 = request.form['quiz1']
+        quiz2 = request.form['quiz2']
+        quiz3 = request.form['quiz3']
+        midtermexam = request.form['midtermexam']
+        finalexam = request.form['finalexam']
+     
+
+        is_graded = check_if_graded(username)
+
+        db = get_db()
+        db.row_factory = make_dicts
+        cur = db.cursor()
+        if is_graded:
+            cur.execute('UPDATE marks SET quiz1=?,quiz2=?, quiz3=?, midtermexam=?, finalexam=? WHERE student_username=?;', [quiz1,quiz2,quiz3,midtermexam,finalexam,username])
+        else:
+            cur.execute('INSERT INTO marks VALUES (?, ?, ?, ?, ?,?)', [quiz1,quiz2,quiz3,midtermexam,finalexam,username])
+        cur.execute('DELETE FROM requests WHERE student_username=?;', [username])
+        db.commit()
+        cur.close()
+
+        return redirect(url_for('grades'))
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
