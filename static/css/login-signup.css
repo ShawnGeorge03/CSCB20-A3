@@ -1,0 +1,49 @@
+.wrapper {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: 0 auto 200px;
+  }
+  
+  form {
+    position: relative;
+    background: #254441;
+    margin: 0 auto 150px;
+    padding: 10px 45px;
+    text-align: center;
+    border: 100px black;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    font-family: sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  input[type="submit"] {
+    color: wheat;
+    background-color: steelblue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  
+  .required {
+    color: red;
+  }
+  
+  @media (max-width: 1200px) {
+    .wrapper {
+      margin-top: 100px;
+    }
+  }
+  

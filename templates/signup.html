@@ -2,7 +2,10 @@
   {% block title %}Login{% endblock %} 
   {% block head%} 
   {{ super() }}
-
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login-signup.css') }}"
+    />
   {% endblock %} 
   {% block content %}
     <div class="wrapper">
@@ -10,8 +13,8 @@
         <p>{{msg}}</p>
         <p>Enter your name: <input type="text" name="name" required=""/></p>
 
-        <input type="radio" name="usertype" id="option1" value="Student" required=""> Student </input>
-        <input type="radio" name="usertype" id="option2" value="Instructor" required=""> Instructor </input>
+        <label><input type="radio" name="usertype" value="Student" required="" /> Student</label> 
+        <label><input type="radio" name="usertype" value="Instructor" required="" /> Instructor</label>
 
         <p>Enter your username: <input type="text" name="username" required="" /></p>
         <p>Enter your password: <input type="password" name="password" required="" /></p>
