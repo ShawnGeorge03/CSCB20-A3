@@ -99,14 +99,20 @@ def signup():
     # Renders the page
     return render_template('signup.html')
 
-
+# This function gets called when the user is trying to 
+# acess the home page of the CSCB63 website
 @app.route('/')
 def index():
+    # Checks if the current user is already logged in
     if 'userID' in session:
+        # Sets up a connection with the database
         db = get_db()
         db.row_factory = make_dicts
+        # Runs a query to find out if the user is a Student or Instructor
         results = query_db('SELECT name, usertype FROM users WHERE id = ?', [session['userID']], one=True)
+        # Renders the page and passes the data
         return render_template('index.html', name=escape(results['name']) , usertype=escape(results['usertype']))
+    # If the user is not logged in then redirects them to login page
     return redirect(url_for('login'))
 
 
