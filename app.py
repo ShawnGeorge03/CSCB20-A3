@@ -44,62 +44,58 @@ def close_connection(exception):
         # close the database if we are connected to it
         db.close()
 
-
+# This function gets called when the user is trying to 
+# login to access the website
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # If the user sends a username and password to login in
     if request.method == 'POST':
-        results = query_db('SELECT * FROM users', args=(), one=False)
+        # Runs a query to collect information from the users table
+        results = query_db('SELECT * FROM users')
         for result in results:
+            # If the username and password are in the users table
             if result[1] == request.form['username']:
                 if result[2] == request.form['password']:
+                    # Add the user ID from the users table 
                     session['userID'] = result[0]
+                    # Redirects the user to the home page
                     return redirect(url_for('index'))
+        # If username/password is incorrect then sends a message
         return render_template('login.html', msg="Incorrect UserName/Password")
+    # Checks if the current user is already logged in
     elif 'userID' in session:
         return redirect(url_for('index'))
-    else:
-        return render_template('login.html', msg="")
+    # Renders the login page
+    return render_template('login.html')
 
-
+# This function gets called when the user is trying to 
+# sign up to get an account
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     db = get_db()
     db.row_factory = make_dicts
     cur = db.cursor()
+    # If the user sends a username and password to login in
     if request.method == 'POST':
+        # Collects the information from the form
         accInfo = request.form
+        # Runs a query to collect information from the users table 
         result = query_db('SELECT * FROM users WHERE username = ?', [accInfo['username']], one=True)
+        # Checks if the username is unique
         if result == None:
-            if isStrongPassword(accInfo['username'], accInfo['password']):
-                primaryKey = query_db('SELECT max(id) AS currID FROM users', one=True)['currID'] + 1
-                cur.execute('INSERT INTO users VALUES (?, ?, ?, ?, ?)', [primaryKey, accInfo['username'], accInfo['password'], accInfo['name'], accInfo['usertype']])
-                db.commit()
-                cur.close()
-                return render_template('signup.html', msg="An account has been made")
-            else:
-                return render_template('signup.html', msg="Low Password Strength")
+            # Generates the primary key for the table
+            primaryKey = query_db('SELECT max(id) AS currID FROM users', one=True)['currID'] + 1
+            # Inserts the data to into the users table
+            cur.execute('INSERT INTO users VALUES (?, ?, ?, ?, ?)', [primaryKey, accInfo['username'], accInfo['password'], accInfo['name'], accInfo['usertype']])
+            db.commit()
+            cur.close()
+            # Renders the page with a message
+            return render_template('signup.html', msg="An account has been made")
         else:
+            # Renders the page with a error message
             return render_template('signup.html', msg="Not unique username")
-    return render_template('signup.html', msg="")
-
-
-def isStrongPassword(username, password):
-    (numOfLower, numOfUpper, numOfSym, numOfDig) = (0, 0, 0, 0)
-    if len(password) >= 8:
-        for i in password:
-            if i.isdigit():
-                numOfDig += 1
-            if i.islower():
-                numOfLower += 1
-            if i.isupper():
-                numOfUpper += 1
-            if i == '@' or i == '$' or i == '_':
-                numOfSym += 1
-    if numOfLower >= 1 and numOfUpper >= 1 and numOfSym >= 1 \
-            and numOfDig >= 1 and numOfLower + numOfUpper + numOfSym \
-            + numOfDig == len(password) and username != password:
-        return True
-    return False
+    # Renders the page
+    return render_template('signup.html')
 
 
 @app.route('/')
