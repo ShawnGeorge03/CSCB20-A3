@@ -72,6 +72,7 @@ def login():
 # sign up to get an account
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    # Sets up a connection with the database and creates a cursor to add data
     db = get_db()
     db.row_factory = make_dicts
     cur = db.cursor()
@@ -85,13 +86,14 @@ def signup():
         if result == None:
             # Generates the primary key for the table
             primaryKey = query_db('SELECT max(id) AS currID FROM users', one=True)['currID'] + 1
-            # Inserts the data to into the users table
+            # Inserts the data to into the users table and closes the cursor
             cur.execute('INSERT INTO users VALUES (?, ?, ?, ?, ?)', [primaryKey, accInfo['username'], accInfo['password'], accInfo['name'], accInfo['usertype']])
             db.commit()
             cur.close()
             # Renders the page with a message
             return render_template('signup.html', msg="An account has been made")
         else:
+
             # Renders the page with a error message
             return render_template('signup.html', msg="Not unique username")
     # Renders the page
