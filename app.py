@@ -5,7 +5,7 @@ import sqlite3
 from flask import Flask, render_template, request, g, session, redirect, url_for, escape
 
 # the database file we are going to communicate with
-DATABASE = 'logindatabase.db'
+DATABASE = 'assignment3.db'
 
 # connects to the database
 def get_db():
@@ -180,7 +180,7 @@ def get_student_grades(username):
         grades.append("Not graded yet")
     result = query_db('SELECT MAX(quiz1) FROM marks WHERE student_username = ?', [username], one=True)
     grades[0] = result[0] if result[0]  else "Not graded yet"
-    print(grades[0])
+    
     result = query_db('SELECT MAX(quiz2) FROM marks WHERE student_username = ?', [username], one=True)
     grades[1] = result[0] if result[0]  else "Not graded yet"
 
