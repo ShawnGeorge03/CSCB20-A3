@@ -1,8 +1,10 @@
+/* Adds styling to the h2 tag under div of class essentials */
 .essentials h2 {
   font-size: 35px;
   text-decoration: underline;
 }
 
+/* Adds styling to the div of class container */
 .container {
   width: 1000px;
   margin: 10px auto;
@@ -12,28 +14,34 @@
   justify-content: space-evenly;
 }
 
+/* Adds styling to the div of class news */
 .news {
   padding: 25px;
 }
 
+/* Adds styling to the h2 tag under div of class news */
 .news h2 {
   font-size: 35px;
   text-decoration: underline;
 }
 
+/* Adds styling to the ul element */
 .news ul {
   justify-content: space-evenly;
   font-size: 15px;
   color: white;
 }
 
+/* Addes styling to the list elements */
 .news ul li {
   list-style: none;
   font-size: 25px;
   line-height: 50px;
 }
 
+/* Breakpoint when the width is less than or equal to 1080 px */
 @media (max-width: 1080px) {
+  /* Removes all previous styling and makes use of flexbox */
   .container {
     all: unset;
     display: flex;
