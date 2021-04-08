@@ -10,7 +10,7 @@
   font-weight: bold;
   font-size: 25px;
 }
-
+/*Styles the tables caption */
 .resp-table-caption {
   display: table-caption;
   text-align: center;
