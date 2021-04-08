@@ -1,5 +1,5 @@
- // Design inspired 
- // Get the modal https://www.w3schools.com/howto/howto_css_modals.asp
+ // Design inspired by w3schools, https://www.w3schools.com/howto/howto_css_modals.asp
+ // Get the modal 
  var modal = document.getElementById("myModal");
 
  // Get the <span> element that closes the modal
@@ -7,9 +7,11 @@
 
  // When the user clicks on the button, open the modal
  function openModal(btn) {
+   // Change display to block so modal becomes visible (modal is hidden before the user clicks on the button)
    modal.style.display = "block";
+   // Displays current student's username in the modal's title
    document.getElementById("current_student").innerHTML="@"+btn.getAttribute("data-username");
-
+  // Assigns the value that instructor inputs to the modal to the student grade
    document.getElementById("input_quiz1").value = document.getElementById(btn.getAttribute("data-username")+"_quiz1").innerHTML;
    document.getElementById("input_quiz2").value = document.getElementById(btn.getAttribute("data-username")+"_quiz2").innerHTML;
    document.getElementById("input_quiz3").value = document.getElementById(btn.getAttribute("data-username")+"_quiz3").innerHTML;
