@@ -10,8 +10,10 @@
   margin: 10px auto;
   display: grid;
   grid-template-columns: 300px 300px 300px;
-  grid-template-rows: 250px;
+  grid-template-rows: 300px;
   justify-content: space-evenly;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
 }
 
 /* Adds styling to the div of class news */
@@ -46,5 +48,7 @@
     all: unset;
     display: flex;
     flex-direction: column;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
   }
 }
