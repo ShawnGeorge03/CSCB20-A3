@@ -21,6 +21,7 @@
     border: 1px solid red;
     width: 40%; /* Could be more or less, depending on screen size */
   }
+  
   .modal-body {
     background-color: gray;
     color:black;
@@ -29,7 +30,7 @@
   }
 
   .modal-content > p{
-    color:rgb(0, 0, 0) !important;
+    color:rgb(0, 0, 0);
     margin-top:1;
     margin-bottom:1;
   }
@@ -41,7 +42,7 @@
     font-size: 38px;
     font-weight: bold;
   }
-  
+  /* Styling of a span element, changes color when cursor is pointed at it */
   .close:hover,
   .close:focus {
     color: black;
