@@ -1,7 +1,3 @@
-/*Adds styling for the general wrapper div 
-  by changing the height and width of the 
-  div
-*/
 .wrapper {
   width: 1000px;
   height: 100vh;
@@ -12,32 +8,32 @@
   height: 500px;
   display: table;
 }
-/*Styles the tables column headers*/
+
 #resp-table-header {
   display: table-header-group;
   background-color: gray;
   font-weight: bold;
   font-size: 25px;
 }
-/*Styles table's caption*/
+
 .resp-table-caption {
   display: table-caption;
   text-align: center;
   font-size: 1000px;
   font-weight: bold;
 }
-/*Styles each of the table column headers text*/
+
 .table-header-cell {
   display: table-cell;
   padding: 10px;
   text-align: justify;
   border-bottom: 1px solid black;
 }
-/*Styles the each of the group of rows*/
+
 #resp-table-body {
   display: table-row-group;
 }
-/*Styles the each individual row*/
+
 .resp-table-row {
   display: table-row;
 }
