@@ -6,13 +6,12 @@
   font-size: 25px;
 }
 
-/*Styles each of the table column headers text*/
-.table-header-cell {
-  display: table-cell;
-  padding: 10px;
-  text-align: justify;
-  color: #EFEFEF;
-  border: 2px solid black;
+/*Styles the tables column headers*/
+#resp-table-header {
+  display: table-header-group;
+  background-color: gray;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 /*Styles the each of the group of rows*/
