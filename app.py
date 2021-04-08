@@ -326,15 +326,17 @@ def request_remark():
     # When student submits a new remarking request
     else:
         # Inserts student data to the database of remark requests
-        cur.execute('INSERT INTO requests(student_username,test,reason) VALUES (?, ?, ?,)', [username,test,reason])
+        cur.execute('INSERT INTO requests(student_username,test,reason) VALUES (?, ?, ?)', [username,test,reason])
         db.commit()
         cur.close()
-
+    # Redirects to the grades page
     return redirect(url_for('grades'))
 
 @app.route("/putgrades", methods=['POST'])
 def put_grades():
+    # If instructor put grade(s)
     if request.method == 'POST':
+        # Collects student's username and test grades
         username = request.form['username']
         quiz1 = request.form['quiz1']
         quiz2 = request.form['quiz2']
@@ -342,20 +344,26 @@ def put_grades():
         midtermexam = request.form['midtermexam']
         finalexam = request.form['finalexam']
      
-
+        # Checks whether the student is graded (present in the database)
         is_graded = check_if_graded(username)
-
+        # Sets up a connection with a database
         db = get_db()
         db.row_factory = make_dicts
+        # Creates a cursor
         cur = db.cursor()
+        # If student is graded (present in the database)
         if is_graded:
+            # Updates marks to the values set by instructor
             cur.execute('UPDATE marks SET quiz1=?,quiz2=?, quiz3=?, midtermexam=?, finalexam=? WHERE student_username=?;', [quiz1,quiz2,quiz3,midtermexam,finalexam,username])
+       # If student is not graded (not present in the database)
         else:
+            # Adds a new student to the database and assigns marks to tests
             cur.execute('INSERT INTO marks VALUES (?, ?, ?, ?, ?,?)', [quiz1,quiz2,quiz3,midtermexam,finalexam,username])
+        # Deletes student's requests after instructor makes changes to grades
         cur.execute('DELETE FROM requests WHERE student_username=?;', [username])
         db.commit()
         cur.close()
-
+        # Redirects to grades 
         return redirect(url_for('grades'))
 
 if __name__ == "__main__":
