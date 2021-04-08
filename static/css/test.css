@@ -1,47 +1,54 @@
+/*Sets the height of the div wrapper*/
 .wrapper {
   height: 100vh;
 }
 
+/*Sets up the genral requirements of the table*/
 #resp-table {
   width: 100%;
   height: 100px;
   display: table;
 }
 
+/*Styles the tables column headers*/
 #resp-table-header {
   display: table-header-group;
-  background-color: gray;
   font-weight: bold;
   font-size: 25px;
 }
 
+/*Styles each of the table column headers text*/
 .table-header-cell {
   display: table-cell;
   padding: 10px;
   text-align: justify;
-  border-bottom: 1px solid black;
+  border: 2px solid black;
 }
 
+/*Styles the each of the group of rows*/
 #resp-table-body {
   display: table-row-group;
 }
 
+/*Styles the each individual row*/
 .resp-table-row {
   display: table-row;
 }
 
+/*Styles each individual cell 
+containg text*/
 .table-body-cell {
   display: table-cell;
-  color: black;
-  background-color: gray;
-  border: 1px solid red;
+  color: #efefef;
+  border: 2px solid black;
   text-align: left;
-  padding: 15px;
+  padding: 1rem;
 }
 
+/* Breakpoint when the width is less than or equal to 1080 px */
 @media (max-width: 1080px) {
+  /*Changes the width of the div wrapper*/
   .wrapper {
     width: 850px;
-    overflow-x: hidden;
   }
 }
