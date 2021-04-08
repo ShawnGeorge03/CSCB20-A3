@@ -1,31 +1,47 @@
+/*Changes how all elements total 
+  width and height are calculated */
 * {
   box-sizing: border-box;
 }
 
+/*Changes the scrolling of the page 
+  and hides the overflow on the x-axis*/
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
+/*
+  Set the margin and font family for
+  all elements and background color
+*/
 body {
   margin: 0px;
   font-family: "segoe ui";
   background-color: #333;
 }
 
+/*Sets the color of the links*/
 a {
   color: #eee;
 }
 
+/*Sets the color and font weight of 
+  links when hover over by cursor */
 a:hover {
   color: cornflowerblue;
   font-weight: bold;
+  cursor: pointer;
 }
 
+/*Changes the font-size*/
 .links {
   font-size: 25px;
 }
 
+/*Sets the height and width of the navbar
+  Sets background color and position
+*/
 .nav {
   height: 50px;
   width: auto;
@@ -33,39 +49,53 @@ a:hover {
   position: relative;
 }
 
-.nav > .nav-btn {
+/*Hides the hamburger from the page*/
+.nav .nav-btn {
   display: none;
 }
 
-.nav > .nav-links {
+/*Positions all the links to the 
+  right side of the page and sets the 
+  font size
+*/
+.nav .nav-links {
   display: inline;
   float: right;
   font-size: 18px;
 }
 
-.nav > .nav-links > a {
+/*Adds padding and positions each of
+  the nav bar links
+*/
+.nav .nav-links a {
   display: inline-block;
   padding: 13px 10px 13px 10px;
   text-decoration: none;
   color: #efefef;
 }
 
-.nav > .nav-links > a:hover {
+/* Changes the color of the link when hovered over*/
+.nav .nav-links a:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.nav > #nav-check {
+/*Hides the hamburger from the page*/
+.nav #nav-check {
   display: none;
 }
 
+/*Sets the width, height and margin
+  and centers the text all inside the 
+  div of class wrapper*/
 .wrapper {
   width: 1200px;
   margin: auto;
   height: auto;
   text-align: center;
-  justify-content: center;
 }
 
+/*Sets the styling of all h1 tags 
+inside the wrapper div*/
 .wrapper h1 {
   text-transform: uppercase;
   font-size: 50px;
@@ -73,11 +103,16 @@ a:hover {
   margin-bottom: 2px;
 }
 
+/*Sets the font and color of all 
+  the p tags inside the wrapper div*/
 .wrapper p {
   font-size: 25px;
   color: white;
 }
 
+/*Sets the styling of the
+  footer div on the page
+*/
 .footer {
   background-color: #000000cc;
   color: white;
@@ -87,42 +122,53 @@ a:hover {
   font-size: 20px;
 }
 
+/*Arranges all the elements inside
+the footer element to be using flexbox*/
 .footer footer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/*Added styling to the footer links and text*/
 .footer footer a,
 .footer footer p {
   padding-top: 1px;
   text-align: center;
 }
 
+/* Breakpoint when the width is less than or equal to 1200 px */
 @media (max-width: 1200px) {
+  /*Changes the width of the wrapper and hides any overflow*/
   .wrapper {
     width: 400px;
     overflow: hidden;
   }
 
-  .nav > .nav-btn {
+  /*Shows the hamburger on the left side*/
+  .nav .nav-btn {
     display: inline;
     left: 0px;
   }
-  .nav > .nav-btn > label {
+
+  /*Adds styling to the previously hidden label*/
+  .nav .nav-btn label {
     display: block;
     width: 50px;
     height: 50px;
     padding: 13px;
   }
 
-  .nav > .nav-btn > label > span {
+  /*Adds styling to show the three white line*/
+  .nav .nav-btn label span {
     display: block;
     width: 25px;
     height: 10px;
     border-top: 2px solid #eee;
   }
-  .nav > .nav-links {
+
+  /*Styles the navbar links*/
+  .nav .nav-links {
     position: absolute;
     display: block;
     width: 100%;
@@ -133,14 +179,20 @@ a:hover {
     top: 50px;
     left: 0px;
   }
-  .nav > .nav-links > a {
+
+  /*Styles the a tags to take the entire with of the page*/
+  .nav .nav-links a {
     display: block;
     width: 100%;
   }
-  .nav > #nav-check:not(:checked) ~ .nav-links {
+
+  /*Hides the nav bar if the checkbox is not clicked*/
+  .nav #nav-check:not(:checked) ~ .nav-links {
     height: 0px;
   }
-  .nav > #nav-check:checked ~ .nav-links {
+
+  /*Shows the nav bar if the checkbox is  clicked*/
+  .nav #nav-check:checked ~ .nav-links {
     height: auto;
     overflow-y: auto;
   }
