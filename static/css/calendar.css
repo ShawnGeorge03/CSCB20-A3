@@ -1,18 +1,21 @@
-.calendar{
-    display: flex;
-    justify-content:space-evenly;
+/* Uses flexbox to arrange the elements contining 
+   in the div of class calendar */
+.calendar {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.calendar iframe{
-    border-radius: 10px;
-    cursor: pointer;
+/* Rounds out the corners of the iframe 
+   and changes to cursor to a pointer */
+.calendar iframe {
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-@media (max-width:829px) {
-    .wrapper{
-        height: 200px;
-    }
+/* Breakpoint when the width is less than or equal to 829 px */
+@media (max-width: 829px) {
+  /* Changes the height of div with class wrapper  */
+  .wrapper {
+    height: 200px;
+  }
 }
-
-
-

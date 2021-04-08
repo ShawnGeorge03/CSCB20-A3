@@ -1,0 +1,50 @@
+/*Adds styling for the general wrapper div*/
+.wrapper {
+  width: 360px;
+  padding: 120px 0 0;
+  margin: 0 auto 200px;
+}
+
+/* Added styling to the form tags 
+  - Adds a background color, padding and box shadow
+  */
+form {
+  background: #254441;
+  padding: 10px 45px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+/*Added styling for the input types containing text and password*/
+input[type="text"],
+input[type="password"] {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin-top: 10px;
+  padding: 15px;
+  font-size: 14px;
+}
+
+/*Added styling for the input type of submit */
+input[type="submit"] {
+  color: wheat;
+  background-color: steelblue;
+  padding: 15px 32px;
+  font-size: 16px;
+  border: 0;
+}
+
+/* If the user does not provide information that is needed */
+.required {
+  /* Adds a border of 100px of color red */
+  border: 100px red;
+}
+
+/* Breakpoint when the width is less than or equal to 1200 px */
+@media (max-width: 1200px) {
+  /* Adds spacing to seperate the header and wrapper */
+  .wrapper {
+    margin-top: 100px;
+  }
+}
