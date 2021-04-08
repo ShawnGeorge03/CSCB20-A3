@@ -119,26 +119,31 @@ def index():
 # acess the calendar page of the CSCB63 website
 @app.route("/calendar")
 def calendar():
+    # Renders the page
     return render_template("calendar.html")
 
 
 @app.route("/lectures")
 def lectures():
+    # Renders the page
     return render_template("lectures.html")
 
 
 @app.route("/labs")
 def labs():
+    # Renders the page
     return render_template("labs.html")
 
 
 @app.route("/assignments")
 def assignments():
+    # Renders the page
     return render_template("assignments.html")
 
 
 @app.route("/tests")
 def tests():
+    # Renders the page
     return render_template("tests.html")
 
 # This function gets called when the user is trying to 
@@ -182,21 +187,27 @@ def feedback():
         # Renders the page
         return render_template("feedback.html", usertype=escape(usertype), questions=feedbackQn, answers=results)
     
-    
+# This function gets called when the user is trying to 
+# acess the teams page of the CSCB63 website
 @app.route("/team")
 def team():
+    # Renders the page
     return render_template("team.html")
 
 # This function gets called when the user is trying to 
 # acess the links page of the CSCB63 website
 @app.route("/links")
 def links():
+    # Renders the page
     return render_template("links.html")
 
-
+# This function gets called when the user is trying to 
+# logout from the CSCB63 website
 @app.route('/logout')
 def logout():
+    # Removes the current user from the session
     session.pop('userID', None)
+    # Redirects them to the login page
     return redirect(url_for('login'))
 
 def get_student_grades(username):
