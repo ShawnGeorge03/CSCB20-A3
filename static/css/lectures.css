@@ -1,6 +1,7 @@
 /*Styles the tables column headers*/
 #resp-table-header {
   display: table-header-group;
+  background-color: gray;
   font-weight: bold;
   font-size: 25px;
 }

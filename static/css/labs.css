@@ -5,6 +5,7 @@
 /*Styles the tables column headers*/
 #resp-table-header {
   display: table-header-group;
+  background-color: gray;
   font-weight: bold;
   font-size: 25px;
 }
@@ -20,8 +21,7 @@
   display: table-cell;
   padding: 10px;
   text-align: justify;
-  color: #EFEFEF;
-  border: 2px solid black;
+  border-bottom: 1px solid black;
 }
 /*Styles the each of the group of rows*/
 #resp-table-body {
@@ -31,18 +31,17 @@
 .resp-table-row {
   display: table-row;
 }
-/*Styles each individual cell 
-containg text*/
+
 .table-body-cell {
   display: table-cell;
-  color: #EFEFEF;
-  border: 2px solid black;
+  color: black;
+  background-color: gray;
+  border: 1px solid red;
   text-align: left;
   padding: 1rem;
 }
-/* Breakpoint when the width is less than or equal to 1080 px */
+
 @media (max-width: 1080px) {
-  /*Changes the width of the div wrapper*/
   .wrapper {
     width: 850px;
   }
