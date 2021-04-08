@@ -243,19 +243,23 @@ def grades():
             return render_template('grades_student.html',grades=grades)
         elif usertype=='Instructor':
             student_list = query_db("SELECT username FROM users WHERE usertype = 'Student'", args=(), one=False)
-            r_requests = query_db("SELECT student_username,test FROM requests", args=(), one=False)
-
+            r_requests = query_db("SELECT student_username,test,reason FROM requests", args=(), one=False)
+           
             remark_requests = {}
             for r in r_requests:
                 if r[0] not in remark_requests:
-                    remark_requests[r[0]] = []
-                remark_requests[r[0]].append(r[1])
-
+                    remark_requests[r[0]] = {}
+                if r[1] not in remark_requests[r[0]]:
+                    remark_requests[r[0]][r[1]] = []
+                remark_requests[r[0]][r[1]].append(r[2])
 
             mark_book = {}
             for s in student_list:
                 grades = get_student_grades(s[0])
                 mark_book[s[0]] = grades
+            
+           
+
 
             return render_template('grades_teacher.html',mark_book=mark_book,remark_requests=remark_requests)
 
@@ -266,15 +270,22 @@ def request_remark():
     if request.method == 'POST':
         username = get_current_username()
         test = request.form['test']
+        reason = request.form['reason']
 
         db = get_db()
         db.row_factory = make_dicts
         cur = db.cursor()
-        cur.execute('INSERT INTO requests(student_username,test) VALUES (?, ?)', [username,test])
+    if query_db('SELECT * FROM requests WHERE student_username = ? AND test = ?', [username,test]):
+        cur.execute('UPDATE requests SET reason = ? WHERE student_username = ? AND test = ?', [reason,username,test ])
+        db.commit()
+        cur.close()
+       
+    else:
+        cur.execute('INSERT INTO requests(student_username,test,reason) VALUES (?, ?, ?)', [username,test,reason])
         db.commit()
         cur.close()
 
-        return redirect(url_for('grades'))
+    return redirect(url_for('grades'))
 
 @app.route("/putgrades", methods=['POST'])
 def put_grades():
