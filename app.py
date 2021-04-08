@@ -183,7 +183,10 @@ def get_student_grades(username):
     grades = []
     for i in range(5):
         grades.append("Not graded yet")
+    # Creates a list with grades and initially sets all values to not graded yet
     result = query_db('SELECT MAX(quiz1) FROM marks WHERE student_username = ?', [username], one=True)
+    
+    #
     grades[0] = result[0] if result[0]  else "Not graded yet"
     
     result = query_db('SELECT MAX(quiz2) FROM marks WHERE student_username = ?', [username], one=True)

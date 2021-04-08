@@ -10,3 +10,7 @@ Team Member - Student ID : 1006094673
 Team Member - First Name : Harrison
 Team Member - Last Name  : Iruthayathas
 Team Member - Student ID : 1006215640
+
+Team Member - First Name : Agha Bala
+Team Member - Last Name  : Gulmaliyev
+Team Member - Student ID : 1004842922
