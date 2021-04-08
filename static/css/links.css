@@ -1,13 +1,23 @@
+/*Adds styling for the general wrapper div 
+  by changing the height and width of the 
+  div
+*/
 .wrapper {
   height: 722px;
   width: 600px;
 }
 
+/* Changes the font size of the p tag */
 .wrapper p {
   font-size: 30px;
 }
 
+/* Breakpoint when the width is less than or equal to 839 px */
 @media (max-width: 893px) {
+  /*Adds styling for the general wrapper div 
+    by changing the height and width of the 
+    div
+  */
   .wrapper {
     height: 794px;
     width: 400px;

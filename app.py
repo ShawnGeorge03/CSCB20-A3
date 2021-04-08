@@ -187,7 +187,8 @@ def feedback():
 def team():
     return render_template("team.html")
 
-
+# This function gets called when the user is trying to 
+# acess the links page of the CSCB63 website
 @app.route("/links")
 def links():
     return render_template("links.html")
