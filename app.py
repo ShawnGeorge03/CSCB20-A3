@@ -141,28 +141,47 @@ def assignments():
 def tests():
     return render_template("tests.html")
 
-
+# This function gets called when the user is trying to 
+# acess the feedback page of the CSCB63 website
 @app.route("/feedback", methods=['GET', 'POST'])
 def feedback():
+    # Sets up a connection with the database
     db = get_db()
     db.row_factory = make_dicts
+    if 'userID' not in session:
+        return redirect("login")
+    # Runs a query to find out if the user is a Student or Instructor
     usertype = query_db('SELECT name, usertype FROM users WHERE id = ?', [session['userID']], one=True)['usertype']
     if usertype == "Student":
+        # Collects the names of the instructors and feedback questions
         instructorNames = [instructorDict['name'] for instructorDict in query_db('SELECT name FROM users WHERE usertype = ?', ['Instructor'])]
         feedbackQn = [questionsDict['question'] for questionsDict in query_db('SELECT question FROM feedbackQn') ]
+        # If the user fills the feedback form
         if request.method == "POST":
+            # Collect the form information
             anonForm = request.form
+            # Creates a cursor
             cur = db.cursor()
+            # Generates the primary key for the table
             primaryKey = query_db('SELECT id FROM users WHERE name = ?', [anonForm['instructor']], one=True)['id']
+            # Inserts the data to into the feedbackAns table and closes the cursor
             cur.execute('INSERT INTO feedbackAns VALUES (?, ?, ?, ?, ?)', [primaryKey, anonForm['qn0'], anonForm['qn1'], anonForm['qn2'], anonForm['qn3']])
             db.commit()
             cur.close()
+            # Renders a page with a message of confirmation
+            return render_template("feedback.html", usertype=escape(usertype), instructors=instructorNames, questions=feedbackQn, len=len(feedbackQn), msg="Your feedback has been sent to " + anonForm['instructor'])
+        # Renders the page
         return render_template("feedback.html", usertype=escape(usertype), instructors=instructorNames, questions=feedbackQn, len=len(feedbackQn))
     elif usertype == "Instructor":
+        # Collects all the feedback questions
         feedbackQn = [questionsDict for questionsDict in query_db('SELECT * FROM feedbackQn')]
+        # Collects all the feedback answers for this instructor
         results = query_db('SELECT * FROM feedbackAns WHERE id = ?', [session['userID']])
+        # If there is no results then add None
         results = ["None"] if len(results) == 0 else results
-        return render_template("feedback.html", usertype=escape(usertype), questions=feedbackQn, len=len(feedbackQn), answers=results)
+        # Renders the page
+        return render_template("feedback.html", usertype=escape(usertype), questions=feedbackQn, answers=results)
+    
     
 @app.route("/team")
 def team():
