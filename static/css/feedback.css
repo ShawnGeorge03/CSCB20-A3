@@ -1,24 +1,25 @@
+/* Changes the width of the div with class wrapper */
 .wrapper {
   width: 600px;
 }
 
+/* Uses flexbox to arrange the form elements and adds top padding*/
 .wrapper form {
   padding-top: 15px;
   display: flex;
   flex-direction: column;
 }
 
+/*Changes the font size and font family  of label */
 form label {
   font-family: cursive;
   font-size: 20px;
 }
 
+/* Added styling for the textare*/
 form textarea {
-  width: inherit;
   height: 150px;
-  border: 3px solid #cccccc;
   margin: 50px;
-  padding: 5px;
   font-family: Tahoma, sans-serif;
   font-size: 20px;
   resize: none;
@@ -26,20 +27,26 @@ form textarea {
   border-radius: 15px;
 }
 
+/* Uses flexbox to arrange the items
+   and add top margin to space it out */
 form .question {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
 }
 
+/*Adds a red border alerting user of 
+ missing information */
 .required {
   color: red;
 }
 
+/* Adds margin to sperate the buttons from textarea */
 .input {
   margin: 15px;
 }
 
+/*Added styling for the input type of submit and reset */
 input[type="submit"],
 input[type="reset"] {
   color: wheat;
@@ -49,39 +56,45 @@ input[type="reset"] {
   margin: 25px;
 }
 
+/* Breakpoint when the width is less than or equal to 893px */
 @media (max-width: 893px) {
+  /* Changes the width of thw div of class wrapper */
   .wrapper {
     width: 530px;
-    overflow: hidden;
   }
-
+  
+  /* Changes the width of the textarea */
   form textarea {
     width: 450px;
   }
 
+  /* Changes the font size of the p tags */
   .wrapper p {
     font-size: 20px;
   }
 }
 
+/* Breakpoint when the width is less than or equal to 400px */
 @media (max-width: 400px) {
+    /* Changes the width of th div of class wrapper */
   .wrapper {
     width: 400px;
-    overflow: hidden;
   }
 
+  /* Changes the font size of the h1 tag under div wrapper */
   .wrapper h1 {
-    color: red;
     font-size: 40px;
   }
 
+  /* Changes the font size of the p tags under div wrapper */
   .wrapper p {
-    display: flex;
     width: 320px;
     margin-left: 10px;
   }
-
+  
+  /* Changes the width of the textarea */
   form textarea {
     width: 300px;
   }
 }
+

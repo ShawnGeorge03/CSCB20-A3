@@ -36,9 +36,10 @@
       {%endif%}
 
       {% if usertype=="Instructor" %}
-        <div class="questions">
+        <div class="feedbacks">
           {%for qn in questions%}
-            <p>{{qn.question}}</p>
+          <div class="feedback">
+            <p class="questions">{{qn.question}}</p>
             <div class="answers">
               {%for ans in answers %}
                 {% if qn.numQn not in ans %}
@@ -47,6 +48,7 @@
                 <p>{{ans[qn.numQn]}}</p>
               {% endfor %}
             </div>
+          </div>
           {% endfor %}
         </div>
       {%endif%}
