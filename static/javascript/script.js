@@ -1,3 +1,4 @@
+ // Design inspired 
  // Get the modal https://www.w3schools.com/howto/howto_css_modals.asp
  var modal = document.getElementById("myModal");
 
